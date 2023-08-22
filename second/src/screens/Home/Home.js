@@ -1,23 +1,33 @@
-import { View, Text, Button } from 'react-native'
-import React from 'react'
+import { View, Text, Button, FlatList } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import styles from './styles'
 import HandleNavigate from '../../utilities/HandleNavigate'
+import axios from 'axios'
+import ProductCart from '../../components/productCart/ProductCart'
 
 export default function Home({ navigation }) {
 
+  const [data, setData] = useState([])
+  const [number, setNumber] = useState(0)
 
-  const goToPage = (value) => {
-    navigation.navigate(value)
+  const getData = () => {
+    axios.get("https://dummyjson.com/products")
+      .then((response) => {
+        setData(response.data)
+      })
   }
+
+  useEffect(() => {
+    getData()
+  }, [data])
+
 
   return (
     <View style={styles.container}>
       <Text>Home</Text>
-      <HandleNavigate title="About" color="red" onPress={() => goToPage('About')} />
-      <HandleNavigate title="Profile" color="blue" onPress={() => goToPage('Profile')} />
-
-      {/* <Button title="Go About" onPress={() => goToPage('About')}/>
-      <Button color={'green'} title="Go Profile" onPress={() => goToPage('Profile')}/> */}
+      <Text>{data.limit}</Text>
+      <FlatList data={data.products} renderItem={({ item }) => <ProductCart item={item}/>} />
+      {/* <Button title='Get Data' onPress={getData} /> */}
     </View>
   )
 }
