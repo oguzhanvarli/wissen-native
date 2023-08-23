@@ -1,22 +1,21 @@
-import { StyleSheet, Text as TextNative, View } from 'react-native'
+import { StyleSheet, Text as TextNative, View, Button } from 'react-native'
 import React from 'react'
-import { Avatar, Button, Card, Text } from 'react-native-paper';
+import { Card, Text } from 'react-native-paper';
 
+export default function ProductCart({item, onPress}) {
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
-
-export default function ProductCart({item}) {
     return (
-        <Card style={styles.container}>
-            <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
-            <Card.Content>
+        <Card style={styles.container} >
+            {/* <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} /> */}
+            <Card.Content style={styles.secondContainer}>
                 <Text variant="titleLarge">{item.title}</Text>
                 <Text variant="bodyMedium">{item.brand}</Text>
             </Card.Content>
-            <Card.Cover source={{ uri: item.thumbnail }} />
+            <Card.Cover source={{ uri: item.thumbnail }}/>
             <Card.Actions>
-                <Text>{item.description}</Text>
+                <Button color="green" title={"Go To Details"} onPress={() => onPress(item)} />
             </Card.Actions>
+            
         </Card>
     )
 }
@@ -24,6 +23,9 @@ export default function ProductCart({item}) {
 const styles = StyleSheet.create({
     container: {
         minWidth: '90%',
+        marginBottom: 10
+    },
+    secondContainer: {
         marginBottom: 10
     }
 })
