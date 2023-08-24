@@ -4,6 +4,7 @@ import styles from './styles'
 import HandleNavigate from '../../utilities/HandleNavigate'
 import axios from 'axios'
 import ProductCart from '../../components/productCart/ProductCart'
+import BaseService from '../../services/baseService/BaseService'
 
 export default function Home({ navigation }) {
 
@@ -12,16 +13,26 @@ export default function Home({ navigation }) {
   // const [number, setNumber] = useState(0)
 
   const getData = async () => {
-    await axios.get("https://dummyjson.com/products")
-      .then((response) => {
-        setData(response.data)
-      })
-      .catch(error => {
-        Alert.alert('Hata', 'Bir Hata Oluştu.Lütfen Tekrar Deneyin.')
-        console.log('Get Prodcuts Error ' + error)
-      })
+    // await axios.get("/products")
+    //   .then((response) => {
+    //     setData(response.data)
+    //   })
+    //   .catch(error => {
+    //     Alert.alert('Hata', 'Bir Hata Oluştu.Lütfen Tekrar Deneyin.')
+    //     console.log('Get Prodcuts Error ' + error)
+    //   })
+    // setLoading(false)
+
+
+    await BaseService.get('/products')
+    .then(res => setData(res))
     setLoading(false)
+
+
+
   }
+
+
 
   useEffect(() => {
     getData()

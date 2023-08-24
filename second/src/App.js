@@ -7,11 +7,16 @@ import About from './screens/About/About'
 import Profile from './screens/Profile/Profile'
 import Blog from './screens/Blog/Blog'
 import Details from './screens/Details/Details'
+import axios from 'axios'
 
 
 const Stack = createNativeStackNavigator()
 
 export default function App() {
+
+
+    axios.defaults.baseURL = "https://dummyjson.com"
+    
     return (
         <NavigationContainer>
             <Stack.Navigator>

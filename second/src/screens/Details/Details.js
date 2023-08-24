@@ -1,7 +1,5 @@
-import { StyleSheet, Text, View, FlatList, Image, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image, ActivityIndicator, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import HandleNavigate from '../../utilities/HandleNavigate'
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import axios from 'axios'
 import Swiper from 'react-native-swiper';
 
@@ -19,7 +17,7 @@ export default function Details({ route }) {
 
 
   const getProductById = () => {
-    axios.get(`https://dummyjson.com/products/${item.id}`)
+    axios.get(`/products/${item.id}`)
       .then(res => setProduct(res.data))
       .catch(error => console.log('Get By Id Product Error' + error))
   }
@@ -31,20 +29,19 @@ export default function Details({ route }) {
         <Text style={styles.title}>{product.title}</Text>
         <Text style={styles.title}>{product.brand}</Text>
       </View>
-      <Swiper style={styles.wrapper} height={400} horizontal={true} autoplay>
+      <Swiper style={styles.wrapper} height={500} horizontal={true} autoplay>
         {product.images.length > 0 ? product.images.map((image, key) => (
           <View key={key} style={styles.slide}>
             <Image style={styles.image} source={{ uri: `${image}` }} />
           </View>
         )) : <ActivityIndicator size="large" color="#0000ff" />}
       </Swiper>
+      <Text style={styles.price}>{product.price}$</Text>
       <Text>{product.description}</Text>
-      <Button>Add To Card</Button>
-
+      <View style={styles.button}>
+        <Button title="Add To Card" onPress={null} />
+      </View>
     </>
-
-
-
   )
 }
 
@@ -62,5 +59,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     flex: 1
+  },
+  title: {
+    fontSize: 20,
+    color: 'white',
+    backgroundColor: 'grey',
+    textAlign: 'center'
+  },
+  button: {
+    margin: 10,
+    borderRadius: 10
+  },
+  price: {
+    color: 'red',
+    fontSize: 20,
+    textAlign: 'center'
   }
 })
