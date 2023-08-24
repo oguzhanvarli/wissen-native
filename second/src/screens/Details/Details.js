@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, FlatList, Image, ActivityIndicator, Button } fr
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swiper from 'react-native-swiper';
+import BaseService from '../../services/baseService/BaseService';
 
 export default function Details({ route }) {
 
@@ -17,9 +18,10 @@ export default function Details({ route }) {
 
 
   const getProductById = () => {
-    axios.get(`/products/${item.id}`)
-      .then(res => setProduct(res.data))
-      .catch(error => console.log('Get By Id Product Error' + error))
+    // axios.get(`/products/${item.id}`)
+    //   .then(res => setProduct(res.data))
+    //   .catch(error => console.log('Get By Id Product Error' + error))
+    BaseService.get(`/products/${item.id}`).then(res => setProduct(res))
   }
 
   return (

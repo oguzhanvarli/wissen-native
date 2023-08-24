@@ -24,8 +24,7 @@ export default function Home({ navigation }) {
     // setLoading(false)
 
 
-    await BaseService.get('/products')
-    .then(res => setData(res))
+    await BaseService.get('/products').then(res => setData(res))
     setLoading(false)
 
 
@@ -49,6 +48,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Button title='Add Product' onPress={() => navigation.navigate('AddProduct')}/>
       {loading ?
         <ActivityIndicator size="large" color="#0000ff" /> :
         <FlatList data={data.products} renderItem={renderCard} />}

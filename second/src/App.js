@@ -8,6 +8,7 @@ import Profile from './screens/Profile/Profile'
 import Blog from './screens/Blog/Blog'
 import Details from './screens/Details/Details'
 import axios from 'axios'
+import AddProduct from './screens/AddProduct/AddProduct'
 
 
 const Stack = createNativeStackNavigator()
@@ -25,6 +26,7 @@ export default function App() {
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="Blog" component={Blog} />
                 <Stack.Screen name="Details" component={Details} />
+                <Stack.Screen name="AddProduct" component={AddProduct} />
             </Stack.Navigator>
         </NavigationContainer>
     )
