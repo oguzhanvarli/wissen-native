@@ -8,7 +8,9 @@ import BaseService from '../../services/baseService/BaseService'
 
 export default function Home({ navigation }) {
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState({
+    products: []
+  })
   const [loading, setLoading] = useState(true)
   // const [number, setNumber] = useState(0)
 
@@ -41,18 +43,24 @@ export default function Home({ navigation }) {
     return <ProductCart item={item} onPress={goToDetails} />
   }, [data])
 
-  const goToDetails = (value) =>{
-    navigation.navigate('Details', {item: value})
+  const goToDetails = (value) => {
+    navigation.navigate('Details', { item: value })
   }
 
 
   return (
     <View style={styles.container}>
-      <Button title='Add Product' onPress={() => navigation.navigate('AddProduct')}/>
-      {loading ?
-        <ActivityIndicator size="large" color="#0000ff" /> :
-        <FlatList data={data.products} renderItem={renderCard} />}
-      {/* <Button title='Get Data' onPress={getData} /> */}
+      <View style={styles.secondContainer}>
+        <Button title='Add Product' onPress={() => navigation.navigate('AddProduct')} />
+        <Button title={'Cart : 0'} onPress={null} color='#F0E68C' />
+      </View>
+      <View style={styles.flatContainer}>
+        {loading ?
+          <ActivityIndicator size="large" color="#0000ff" /> :
+          <FlatList data={data.products.length > 0 ? data.products : null} renderItem={renderCard} />}
+        {/* <Button title='Get Data' onPress={getData} /> */}
+      </View>
     </View>
   )
 }
+
