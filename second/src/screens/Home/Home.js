@@ -5,11 +5,13 @@ import HandleNavigate from '../../utilities/HandleNavigate'
 import axios from 'axios'
 import ProductCart from '../../components/productCart/ProductCart'
 import BaseService from '../../services/baseService/BaseService'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import { addToCard } from '../../store/card/cardSlice'
 
 export default function Home({ navigation }) {
 
   const card = useSelector((state) => state.card.value)
+  const dispatch = useDispatch()
 
   const [data, setData] = useState({
     products: []
@@ -38,11 +40,14 @@ export default function Home({ navigation }) {
   }, [])
 
   const renderCard = useCallback(({ item }) => {
-    return <ProductCart item={item} onPress={goToDetails} />
+    return <ProductCart item={item} onPress={goToDetails} addToCard={addCard} />
   }, [data])
 
   const goToDetails = (value) => {
     navigation.navigate('Details', { item: value })
+  }
+  const addCard = (product) => {
+    dispatch(addToCard(product))
   }
 
 
@@ -50,7 +55,7 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       <View style={styles.secondContainer}>
         <Button title='Add Product' onPress={() => navigation.navigate('AddProduct')} />
-        <Button title={`Card = ${card}`} onPress={null} color='#F0E68C' disabled />
+        <Button title={`Card = ${card}`} onPress={() => navigation.navigate('Card')} color='#F0E68C'  />
       </View>
       <View style={styles.flatContainer}>
         {loading ?

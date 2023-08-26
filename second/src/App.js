@@ -11,6 +11,7 @@ import axios from 'axios'
 import AddProduct from './screens/AddProduct/AddProduct'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
+import Card from './screens/Card/Card'
 
 
 const Stack = createNativeStackNavigator()
@@ -30,6 +31,7 @@ export default function App() {
                     <Stack.Screen name="Blog" component={Blog} />
                     <Stack.Screen name="Details" component={Details} />
                     <Stack.Screen name="AddProduct" component={AddProduct} />
+                    <Stack.Screen name="Card" component={Card}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>
