@@ -9,8 +9,6 @@ export default styles = StyleSheet.create({
     secondContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignContent: 'space-around',
         margin: 20
     },
     flatContainer:{

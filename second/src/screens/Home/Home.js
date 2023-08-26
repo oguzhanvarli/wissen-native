@@ -5,8 +5,11 @@ import HandleNavigate from '../../utilities/HandleNavigate'
 import axios from 'axios'
 import ProductCart from '../../components/productCart/ProductCart'
 import BaseService from '../../services/baseService/BaseService'
+import {useSelector} from 'react-redux'
 
 export default function Home({ navigation }) {
+
+  const card = useSelector((state) => state.card.value)
 
   const [data, setData] = useState({
     products: []
@@ -24,13 +27,8 @@ export default function Home({ navigation }) {
     //     console.log('Get Prodcuts Error ' + error)
     //   })
     // setLoading(false)
-
-
     await BaseService.get('/products').then(res => setData(res))
     setLoading(false)
-
-
-
   }
 
 
@@ -52,7 +50,7 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       <View style={styles.secondContainer}>
         <Button title='Add Product' onPress={() => navigation.navigate('AddProduct')} />
-        <Button title={'Cart : 0'} onPress={null} color='#F0E68C' />
+        <Button title={`Card = ${card}`} onPress={null} color='#F0E68C' disabled />
       </View>
       <View style={styles.flatContainer}>
         {loading ?

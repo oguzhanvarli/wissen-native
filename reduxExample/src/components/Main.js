@@ -12,18 +12,21 @@ export default function Main() {
     const changeValue = () => {
         dispatch(arttir())
     }
+    const changeValue2 = () => {
+        dispatch(arttir())
+    }
 
     const inputDegistir = () => {
-        dispatch(inputaGoreDegistir(sayi))
+        dispatch(inputaGoreDegistir(Number(sayi)))
     }
 
     
 
   return (
     <View style={styles.container}>
-      <Button title={"1 Arttir"} color="green" onPress={changeValue} />
+      <Button title={"1 Arttir"} color="green" onPress={() => dispatch(arttir())} />
       <Button title={"1 Azalt"} color="aqua" onPress={() => dispatch(azalt())} />
-      <TextInput style={styles.input} value={sayi} onChangeText={(sayi) => setSayi(sayi)}/>
+      <TextInput keyboardType='numeric' style={styles.input} onChangeText={(sayi) => setSayi(sayi)}/>
       <Button title={"Ekle"} color="navy" onPress={inputDegistir} />
 
     </View>

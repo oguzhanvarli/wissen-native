@@ -10,16 +10,19 @@ export const cardSlice = createSlice({
     initialState,
     reducers : {
         arttir: (state) => {
-            state.value += 1
+            state.value = state.value + 1
         },
         azalt: (state) => {
             state.value -= 1
         },
         inputaGoreDegistir: (state,action) => {
-            state.value = action.payload
+            state.value = action.payload + state.value
+        },
+        sifirla: (state) => {
+            state.value = 0
         }
     }
 })
 
-export const {arttir, azalt, inputaGoreDegistir} = cardSlice.actions
+export const {arttir, azalt, inputaGoreDegistir, sifirla} = cardSlice.actions
 export default cardSlice.reducer
