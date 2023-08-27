@@ -65,12 +65,15 @@ import { DataTable } from 'react-native-paper';
 
 const CardComponent = ({ item }) => {
 
+  console.log(item)
+
   return (
-    <DataTable.Row style={styles.row}>
+    <DataTable.Row  style={styles.row}>
       <DataTable.Cell> <Image style={styles.tinyLogo} source={{
         uri: item.thumbnail,
       }} /></DataTable.Cell>
-      < DataTable.Cell numeric > <View><Text style={styles.title}>{item.title}</Text><Text style={styles.brand}>{item.brand}</Text></View></DataTable.Cell>
+      <DataTable.Cell>{item.quantity ? item.quantity : '1'}</DataTable.Cell>
+      < DataTable.Cell style={styles.titleContainer} > <View><Text style={styles.title}>{item.title}</Text><Text style={styles.brand}>{item.brand}</Text></View></DataTable.Cell>
       <DataTable.Cell numeric ><Text style={styles.price}>{item.price}$</Text></DataTable.Cell>
     </DataTable.Row>
   );
@@ -91,11 +94,13 @@ const styles = StyleSheet.create({
     color: '#006400'
   },
   title: {
-        fontSize: 16,
-        textAlign: 'center'
-      },
-      brand: {
-        textAlign: 'center',
-        color: '#DC143C'
-      }
-  })
+    fontSize: 12,
+    textAlign: 'right',
+    // maxWidth: 100
+
+  },
+  brand: {
+    textAlign: 'center',
+    color: '#DC143C'
+  },
+})

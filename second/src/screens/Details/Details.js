@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swiper from 'react-native-swiper';
 import BaseService from '../../services/baseService/BaseService';
+import { useDispatch } from 'react-redux';
+import { addToCard } from '../../store/card/cardSlice';
 
 export default function Details({ route }) {
 
+  const dispatch = useDispatch()
   let { item } = route.params
 
   const [product, setProduct] = useState({
@@ -41,7 +44,7 @@ export default function Details({ route }) {
       <Text style={styles.price}>{product.price}$</Text>
       <Text>{product.description}</Text>
       <View style={styles.button}>
-        <Button title="Add To Card" onPress={null} />
+        <Button title="Add To Card" onPress={() => dispatch(addToCard(product))} />
       </View>
     </>
   )

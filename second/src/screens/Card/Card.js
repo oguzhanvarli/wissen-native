@@ -12,7 +12,8 @@ export default function Card() {
             <DataTable>
                 <DataTable.Header>
                     <DataTable.Title>Image</DataTable.Title>
-                    <DataTable.Title numeric>Product</DataTable.Title>
+                    <DataTable.Title>Miktar</DataTable.Title>
+                    <DataTable.Title>Product</DataTable.Title>
                     <DataTable.Title numeric>Price</DataTable.Title>
                 </DataTable.Header>
                 {card.products.map((product, key) => (
