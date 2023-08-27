@@ -7,6 +7,8 @@ import { DataTable } from 'react-native-paper';
 export default function Card() {
 
     const card = useSelector((state) => state.card)
+
+
     return (
         <ScrollView>
             <DataTable>
@@ -17,7 +19,7 @@ export default function Card() {
                     <DataTable.Title numeric>Price</DataTable.Title>
                 </DataTable.Header>
                 {card.products.map((product, key) => (
-                    <CardComponent key={key} item={product} />
+                        <CardComponent key={key} item={product} />
                 ))}
             </DataTable>
         </ScrollView>

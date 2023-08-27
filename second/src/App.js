@@ -12,6 +12,7 @@ import AddProduct from './screens/AddProduct/AddProduct'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 import Card from './screens/Card/Card'
+import Login from './screens/Login/Login'
 
 
 const Stack = createNativeStackNavigator()
@@ -25,6 +26,7 @@ export default function App() {
         <Provider store={store}>
             <NavigationContainer>
                 <Stack.Navigator>
+                    <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="Home" component={Home} />
                     <Stack.Screen name="About" component={About} />
                     <Stack.Screen name="Profile" component={Profile} />

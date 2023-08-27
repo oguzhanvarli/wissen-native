@@ -64,15 +64,13 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import { DataTable } from 'react-native-paper';
 
 const CardComponent = ({ item }) => {
-
   console.log(item)
-
   return (
     <DataTable.Row  style={styles.row}>
       <DataTable.Cell> <Image style={styles.tinyLogo} source={{
         uri: item.thumbnail,
       }} /></DataTable.Cell>
-      <DataTable.Cell>{item.quantity ? item.quantity : '1'}</DataTable.Cell>
+      <DataTable.Cell style={styles.quantity}>{item.quantity ? item.quantity : '1'}</DataTable.Cell>
       < DataTable.Cell style={styles.titleContainer} > <View><Text style={styles.title}>{item.title}</Text><Text style={styles.brand}>{item.brand}</Text></View></DataTable.Cell>
       <DataTable.Cell numeric ><Text style={styles.price}>{item.price}$</Text></DataTable.Cell>
     </DataTable.Row>
@@ -103,4 +101,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#DC143C'
   },
+  quantity:{
+    marginLeft: 25
+  }
 })
