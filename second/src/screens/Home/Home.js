@@ -5,7 +5,7 @@ import HandleNavigate from '../../utilities/HandleNavigate'
 import axios from 'axios'
 import ProductCart from '../../components/productCart/ProductCart'
 import BaseService from '../../services/baseService/BaseService'
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { addToCard } from '../../store/card/cardSlice'
 
 export default function Home({ navigation }) {
@@ -53,14 +53,16 @@ export default function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.secondContainer}>
-        <Button title='Add Product' onPress={() => navigation.navigate('AddProduct')} />
-        <Button title={`Card = ${card}`} onPress={() => navigation.navigate('Card')} color='#F0E68C'  />
-      </View>
+
       <View style={styles.flatContainer}>
         {loading ?
           <ActivityIndicator size="large" color="#0000ff" /> :
-          <FlatList data={data.products.length > 0 ? data.products : null} renderItem={renderCard} />}
+          <FlatList data={data.products.length > 0 ? data.products : null} renderItem={renderCard}
+            ListHeaderComponent={<View style={styles.secondContainer}>
+              <Button title='Add Product' onPress={() => navigation.navigate('AddProduct')} />
+              <Button title={`Card = ${card}`} onPress={() => navigation.navigate('Card')} color='#F0E68C' />
+            </View>}
+          />}
         {/* <Button title='Get Data' onPress={getData} /> */}
       </View>
     </View>

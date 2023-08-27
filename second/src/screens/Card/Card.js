@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CardComponent from '../../components/Card/CardComponent'
 import { DataTable } from 'react-native-paper';
+import { clearCard } from '../../store/card/cardSlice';
 
 export default function Card() {
 
     const card = useSelector((state) => state.card)
+    const dispatch = useDispatch()
 
 
     return (
@@ -22,6 +24,7 @@ export default function Card() {
                         <CardComponent key={key} item={product} />
                 ))}
             </DataTable>
+            <Button title='Clear Card' onPress={() => dispatch(clearCard())} color='red' disabled={card.value === 0 ? true : false} />
         </ScrollView>
     )
 }

@@ -28,9 +28,13 @@ export const cardSlice = createSlice({
                 }
                 
             }
+        },
+        clearCard : (state) => {
+            state.value = 0,
+            state.products = []
         }
     }
 })
 
-export const {addToCard} = cardSlice.actions
+export const {addToCard, clearCard} = cardSlice.actions
 export default cardSlice.reducer

@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux'
+import { login } from '../../store/user/userSlice'
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string()
@@ -14,17 +17,20 @@ const LoginSchema = Yup.object().shape({
         .min(4, 'Password too short')
 })
 
-export default function Login() {
+export default function Login({navigation}) {
 
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
 
     const handleLogin =async (values) => {
         setLoading(true)
         await axios.post('/auth/login', values)
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res.data)
+                    dispatch(login())
+                    AsyncStorage.setItem('token', res.data.token)
                     ToastAndroid.show('Welcome', ToastAndroid.SHORT)
+                    navigation.navigate('Home')
                 }
             }).catch(error => {
                 Alert.alert('Error', 'Wrong Username or Password')
